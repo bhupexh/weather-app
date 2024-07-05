@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Weather-app</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap" rel="stylesheet">
+    <style>
+      .rubik-bold {
+        font-family: "Rubik", sans-serif;
+        font-optical-sizing: auto;
+        font-weight: 800; 
+        font-style: normal;
+      }
+    </style>
+  </head>
+  <body class="bg-emerald-50">
+    <nav class="p-4"><span class="text-4xl rubik-bold">Whether</span></nav>
+    <main><p class="py-6 text-4xl text-center">Plan your plans with<br>Whether.</p></main>
+    <!-- <form action="" class="">
+      <input
+        type="text"
+        placeholder="Delhi"
+        class="text-white placeholder-white bg-slate-400"
+      />
+    </form> -->
+    <div>
+      <div class="w-48 h-64" id="today"></div>
+      <div class="w-48 h-64" id="tomorrow"></div>
+      <div class="w-48 h-64" id="overmorrow"></div>
+    </div>
+  </body>
+</html>
