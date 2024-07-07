@@ -1,28 +1,25 @@
 import './input.css';
-import { displayWeatherData } from './dom';
+import { displayWeatherData, removeCard } from './dom';
 
-const url = "https://api.weatherapi.com/v1/forecast.json?key=7c344d43905a4e4baa290625242005&q=Sonipat&days=3";
+const url = "https://api.weatherapi.com/v1/forecast.json?key=7c344d43905a4e4baa290625242005";
 
-async function getWeatherData(){
-  const response = await fetch(url, {mode: "cors"});
+async function getWeatherData(location){
+  location = location || localStorage.getItem('location') || 'New Delhi';
+  const query = `${url}&q=${location}&days=3`;
+  const response = await fetch(query, {mode: "cors"});
   const weatherData = await response.json();
+  removeCard();
   console.log(weatherData);
-  // printWeatherData(weatherData);
   displayWeatherData(weatherData);
 }
 
-function printWeatherData(weatherData){
-  const forecast = weatherData.forecast.forecastday;
+const form = document.querySelector("#search");
+form.addEventListener('submit', function(event){
+  event.preventDefault();
 
-  console.log(`Weather of ${weatherData.location.name}, ${weatherData.location.region} \n`);
-  console.log(`Feels like: ${weatherData.current["feelslike_c"]}`);
-  console.log(`Current Temperature: ${weatherData.current["temp_c"]}`);
-  console.log(`${forecast[0].date}'s max temp: ${forecast[0].day["maxtemp_c"]}`);
-  console.log(`${forecast[0].date}'s min temp: ${forecast[0].day["mintemp_c"]}`);
-  console.log(`${forecast[1].date}'s max temp: ${forecast[0].day["maxtemp_c"]}`);
-  console.log(`${forecast[1].date}'s min temp: ${forecast[0].day["mintemp_c"]}`);
-  console.log(`${forecast[2].date}'s max temp: ${forecast[0].day["maxtemp_c"]}`);
-  console.log(`${forecast[2].date}'s min temp: ${forecast[0].day["mintemp_c"]}`);
-}
+  const location = document.querySelector('#input_field').value;
+  localStorage.setItem('location', location);
+  getWeatherData(location);
+})
 
 getWeatherData();
